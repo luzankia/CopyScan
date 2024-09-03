@@ -53,7 +53,8 @@ IF %DEV% EQU 0 GOTO INITFILES
 ECHO ZONE DE DEV
 REM Zone d'affichage
 REM --------------------------------------------------
-ECHO %CD%
+GOTO NOUVEAU
+
 ECHO PAUSE Zone de test
 PAUSE
 REM --------------------------------------------------
@@ -107,19 +108,33 @@ GOTO %CHX%
 :NOUVEAU
 REM Gestion des particularités
 REM Extraction des variables
-FOR /f "skip=1 tokens=1-3 delims=;"  %%I IN (exception.txt) DO (
+FOR /f "skip=1 tokens=1-3 delims=;" %%I IN (exception.txt) DO (
 	REM le dossier à renommer existe ? Si oui, renommage
 	CD "%DLANDROID%\%%I\" 2>NUL
 	IF EXIST %%J (
 		REN "%%J" "%%K"
 		ECHO %%K renomé
+		MOVE "%DLANDROID%\%%I\%%K" "%DLHDDOWNLOADER%"
 	) ELSE (
 		REM Sinon, on affiche qu'il n'y a rien à renommer
-		REM ECHO Pas de dossier %%K a renommer
 		ECHO Nope !
 	)
 )
 ECHO.
+
+REM Gestion des dossiers spéciaux
+CD %SOURCESCRIPT%
+FOR /f "skip=1 tokens=1,2 delims=;" %%M IN (batchexception.txt) DO (
+	FOR /d %%Q IN ("%DLANDROID%\%%M\"*) DO (
+		ECHO Traitement de %%Q
+		REN "%DLANDROID%\%%M\%%~nxQ" "%%~nxQ%%N"
+	)
+)
+ECHO.
+ECHO Fin de renomage des dossiers spéciaux
+ECHO.
+PING -n 6 127.0.0.1>NUL
+
 ECHO Fin de renomage des exceptions
 ECHO.
 PING -n 6 127.0.0.1>NUL
@@ -136,7 +151,7 @@ FOR /F "skip=1 usebackq tokens=*" %%A IN (source.txt) DO (
 	) ELSE (
 		REM Sinon, on affiche qu'il n'y a rien à copier
 		REM ECHO Pas de dossier %%A a copier
-		ECHO Nope !
+		REM ECHO Nope !
 	)
 )
 ECHO.
@@ -366,17 +381,9 @@ ECHO.
 PAUSE
 ECHO creation du fichier exception.txt
 ECHO Dossier;nom original;nom original [FR];>exception.txt
-ECHO Webtoons.com (FR);Hardcore Leveling Warrior;Hardcore Leveling Warrior [FR];>>exception.txt
-ECHO Webtoons.com (FR);High School Mercenary;High School Mercenary [FR];>>exception.txt
-ECHO Webtoons.com (FR);I'm the Max-Level Newbie;I'm the Max-Level Newbie [FR];>>exception.txt
-ECHO Webtoons.com (FR);Jungle Juice;Jungle Juice [FR];>>exception.txt
-ECHO Webtoons.com (FR);Lecteur omniscient;Lecteur omniscient [FR];>>exception.txt
-ECHO Webtoons.com (FR);Prodige Hors Norme;Prodige Hors Norme [FR];>>exception.txt
-ECHO Webtoons.com (FR);Return of the Legendary Ranker;Return of the Legendary Ranker [FR];>>exception.txt
-ECHO Webtoons.com (FR);Return to Player;Return to Player [FR];>>exception.txt
-ECHO Webtoons.com (FR);Surviving the Game as a Barbarian;Surviving the Game as a Barbarian [FR];>>exception.txt
-ECHO Webtoons.com (FR);The Druid of Seoul Station;The Druid of Seoul Station [FR];>>exception.txt
-ECHO Webtoons.com (FR);The World After the Fall;The World After the Fall [FR];>>exception.txt
+ECHO Hiperdex (EN);My High School Bully;My High School Bully (Hiperdex)>>exception.txt
+ECHO The Blank Scanlation (EN);My Lovely Illustrator;My Lovely Illustrator (Original)>>exception.txt
+ECHO The Blank Scanlation (EN);For Sale. Ruined Lady. Not Used;For Sale. Ruined Lady. Not Used (Original)>>exception.txt
 CLS
 ECHO Fichier exception.txt cree et pre-remplis
 PAUSE
@@ -389,35 +396,41 @@ ECHO le fichier source.txt n'existe pas !
 ECHO.
 PAUSE
 ECHO creation du fichier source.txt
-ECHO Nom du Dossier>source.txt
-ECHO E-Hentai (ALL)>>source.txt
-ECHO ExHentai (ALL)>>source.txt
-ECHO FastManhwa (EN)>>source.txt
-ECHO Hentai Manga (EN)>>source.txt
-ECHO Hentai20 (EN)>>source.txt
-ECHO HentaiHere (EN)>>source.txt
-ECHO HentaiWebtoon (EN)>>source.txt
-ECHO Hentaidexy (EN)>>source.txt
-ECHO Hiperdex (EN)>>source.txt
-ECHO InstaManhwa (EN)>>source.txt
-ECHO Manga18fx (EN)>>source.txt
-ECHO MangaBuddy (EN)>>source.txt
-ECHO MangaDex (EN)>>source.txt
-ECHO Mangahere (EN)>>source.txt
-ECHO Manhua Plus (EN)>>source.txt
-ECHO Manhwa18 (EN)>>source.txt
-ECHO Manhwa18.app (EN)>>source.txt
-ECHO Manhwa18.cc (ALL)>>source.txt
-ECHO Manhwa18.cc (EN)>>source.txt
-ECHO Manhwa18.org (EN)>>source.txt
-ECHO Manhwahentai.me (EN)>>source.txt
-ECHO ManyToon (EN)>>source.txt
-ECHO Omega Scans (EN)>>source.txt
-ECHO Oppai Stream (EN)>>source.txt
-ECHO Temple Scan (EN)>>source.txt
-ECHO Toonily (EN)>>source.txt
-ECHO Webtoons.com (EN)>>source.txt
-ECHO Webtoons.com (FR)>>source.txt
+Nom du Dossier>source.txt
+Asura Scans (EN)>>source.txt
+Bato.to (ALL)>>source.txt
+ExHentai (ALL)>>source.txt
+FastManhwa (EN)>>source.txt
+Hentai Manga (EN)>>source.txt
+Hentai20 (EN)>>source.txt
+HentaiHere (EN)>>source.txt
+HentaiWebtoon (EN)>>source.txt
+Hentaidexy (EN)>>source.txt
+Hiperdex (EN)>>source.txt
+InstaManhwa (EN)>>source.txt
+Lunar Scans (EN)>>source.txt
+Manga18fx (EN)>>source.txt
+MangaBuddy (EN)>>source.txt
+MangaDex (EN)>>source.txt
+Mangahere (EN)>>source.txt
+Mangakakalot (EN)>>source.txt
+Manhua Plus (EN)>>source.txt
+Manhwa18 (EN)>>source.txt
+Manhwa18.app (EN)>>source.txt
+Manhwa18.cc (ALL)>>source.txt
+Manhwa18.cc (EN)>>source.txt
+Manhwa18.org (EN)>>source.txt
+Manhwa68 (EN)>>source.txt
+Manhwahentai.me (EN)>>source.txt
+ManyToon (EN)>>source.txt
+Omega Scans (EN)>>source.txt
+Oppai Stream (EN)>>source.txt
+Reaper Scans (EN)>>source.txt
+Temple Scan (EN)>>source.txt
+The Blank Scanlation (EN)>>source.txt
+Toonily (EN)>>source.txt
+Webtoons.com (EN)>>source.txt
+Webtoons.com (FR)>>source.txt
 CLS
 ECHO Fichier source.txt cree et pre-remplis
 PAUSE
