@@ -22,8 +22,10 @@ REM Dossier Telecharge
 SET DL=Telecharge
 REM Dossier Fini
 SET FINI=Series_Finis
-REM BD trié
-SET BDTRIE=BD_Trie
+REM BD Telecharge
+SET BDTELECHARGE=BD_Telecharge
+REM BD Vrac
+SET BDVRAC=BD_Vrac
 REM Dossier A_preparer
 SET APREP=A_preparer
 REM Dossier Adulte Long
@@ -87,22 +89,20 @@ ECHO. Outil de copie des Scans
 ECHO -------------------------------------------------------------------------------
 ECHO.
 ECHO 1 - Copie des nouveaux Scans
-ECHO 2 - Copie de Colva vers Anjuna
-ECHO 3 - Copie Selective
+ECHO.
+ECHO G - Menu General
+ECHO S - Copie Selective
 ECHO.
 ECHO Q - Quitter
 ECHO.
-CHOICE /C 123Q /T 10 /D 1
-
+CHOICE /C 1SQ /T 10 /D 1
 SET CHXMENU=%ERRORLEVEL%
 IF %CHXMENU% EQU 1 SET CHX=NOUVEAU
 IF %CHXMENU% EQU 2 SET CHX=GENERAL
 IF %CHXMENU% EQU 3 SET CHX=SELECT
-IF %CHXMENU% EQU 4 SET CHX=FINFIN
+IF %CHXMENU% EQU 4 SET CHX=FIN
 CLS
 GOTO %CHX%
-
-)
 
 :NOUVEAU
 REM Gestion des particularités
@@ -130,6 +130,7 @@ REM Extraction des variables
 FOR /F "skip=1 usebackq tokens=*" %%A IN (source.txt) DO (
 	REM le dossier à copier existe ? Si oui, copie
 	IF EXIST "%DLANDROID%\%%A" (
+		ECHO.
 		ECHO Copie du dossier %%A
 		robocopy "%DLANDROID%\%%A" "%DLHDDOWNLOADER%" %PARAMETREMV% 
 	) ELSE (
@@ -138,9 +139,6 @@ FOR /F "skip=1 usebackq tokens=*" %%A IN (source.txt) DO (
 		ECHO Nope !
 	)
 )
-
-
-
 ECHO.
 ECHO Fin de la copie des dossiers Android
 PING -n 6 127.0.0.1>NUL
@@ -157,25 +155,35 @@ REM Menu pour copier le reste ou non
 TITLE Copie vers Anjuna
 COLOR 07
 SET ERRORLEVEL=
+SET CHXMENU=
 CLS
 ECHO.
 ECHO -------------------------------------------------------------------------------
 ECHO. Copier vers Anjuna
 ECHO -------------------------------------------------------------------------------
 ECHO.
-ECHO 1 - Dossier Telecharge
-ECHO 2 - Tout copier
-ECHO 3 - Copie Selective
+ECHO 1 - Tout copier
+ECHO 2 - Telecharge
+ECHO 3 - A Preparer
+ECHO 4 - BD Vrac
+ECHO 5 - BD Telecharge
+ECHO 6 - Series Fini
+ECHO 7    - Copie Series Fini Selective
 ECHO.
 ECHO Q - Quitter
 ECHO.
-CHOICE /C 123Q /T 10 /D 1
-
+REM CHOICE /C 1234567Q /T 10 /D 1
+CHOICE /C 1234567Q
 SET CHXMENU=%ERRORLEVEL%
-IF %CHXMENU% EQU 1 SET CHX=CPTELECHARGE
-IF %CHXMENU% EQU 2 SET CHX=CPTOUT
-IF %CHXMENU% EQU 3 SET CHX=SELECT
-IF %CHXMENU% EQU 4 SET CHX=FIN
+IF %CHXMENU% EQU 1 SET CHX=CPTOUT
+IF %CHXMENU% EQU 2 SET CHX=CPTELECHARGE
+IF %CHXMENU% EQU 3 SET CHX=CPAPREPARER
+IF %CHXMENU% EQU 4 SET CHX=CPBDVRAC
+IF %CHXMENU% EQU 5 SET CHX=CPBDTELECHARGE
+IF %CHXMENU% EQU 6 SET CHX=CPSERIESFINI
+IF %CHXMENU% EQU 7 SET CHX=SELECT
+IF %CHXMENU% EQU 8 SET CHX=FIN
+CLS
 GOTO %CHX%
 
 :SELECT
@@ -183,86 +191,131 @@ REM Menu pour selectionner un copie en particulier
 TITLE Copie a la carte
 COLOR 07
 SET ERRORLEVEL=
+SET CHXMENU=
 CLS
 ECHO.
 ECHO -------------------------------------------------------------------------------
-ECHO. Copier a la carte Colva vers Anjuna
+ECHO. Copie selective de Colva vers Anjuna
 ECHO -------------------------------------------------------------------------------
 ECHO.
-ECHO 1 - Telecharger
-ECHO 2 - A_Preparer
-ECHO 3 - BD_Trie
-ECHO 4 - Series_Finis
-ECHO 5 -  +long
-ECHO 6 -  +court
-ECHO 7 -  +BD
+ECHO 1 - Adulte Long
+ECHO 2 - Adulte Short
+ECHO 3 - BD
+ECHO 4 - Manga
+ECHO 5 - Manhua
+ECHO 6 - Manwha
+ECHO 7 - Webtoon
+ECHO 8 - Webtoon H
 ECHO.
-ECHO Q - Quitter
+ECHO G - Generale
 ECHO.
-CHOICE /C 1234567Q
+CHOICE /C 12345678G
 
 SET CHXMENU=%ERRORLEVEL%
-IF %CHXMENU% EQU 1 SET CHX=CPTELECHARGE
-IF %CHXMENU% EQU 2 SET CHX=CPAPREPARER
-IF %CHXMENU% EQU 3 SET CHX=CPBDTRIE
-IF %CHXMENU% EQU 4 SET CHX=CPSERIESFINI
-IF %CHXMENU% EQU 5 SET CHX=CPLONGFINI
-IF %CHXMENU% EQU 6 SET CHX=CPCOURTFINI
-IF %CHXMENU% EQU 7 SET CHX=CPBDFINI
-IF %CHXMENU% EQU 8 SET CHX=FIN
+IF %CHXMENU% EQU 1 SET CHX=CPALONG
+IF %CHXMENU% EQU 2 SET CHX=CPASHORT
+IF %CHXMENU% EQU 3 SET CHX=CPBD
+IF %CHXMENU% EQU 4 SET CHX=CPMANGA
+IF %CHXMENU% EQU 5 SET CHX=CPMANHUA
+IF %CHXMENU% EQU 6 SET CHX=CPMANWHA
+IF %CHXMENU% EQU 7 SET CHX=CPWEBT
+IF %CHXMENU% EQU 8 SET CHX=CPWEBTH
+IF %CHXMENU% EQU 9 SET CHX=GENERAL
 CLS
 GOTO %CHX%
 
 
-:CPLONGFINI
-TITLE Copie de "Adulte Long" de Colva vers Anjuna
+:CPALONG
+TITLE Copie du dossier "Adulte Long" de Colva vers Anjuna
 CLS
-ECHO Copie de "Adulte Long" de Colva vers Anjuna
+ECHO Copie du dossier "Adulte Long" de Colva vers Anjuna
 robocopy "%COLVA%%FINI%\%FINIADULTLONG%" "%ANJUNA%%FINI%\%FINIADULTLONG%" %PARAMETRECP%
 GOTO SELECT
 
-:CPCOURTFINI
-TITLE Copie de "Adulte Court" de Colva vers Anjuna
+:CPASHORT
+TITLE Copie du dossier "Adulte Court" de Colva vers Anjuna
 CLS
-ECHO Copie de "Adulte Court" de Colva vers Anjuna
+ECHO Copie du dossier "Adulte Court" de Colva vers Anjuna
 robocopy "%COLVA%%FINI%\%FINIADULTSHORT%" "%ANJUNA%%FINI%\%FINIADULTSHORT%" %PARAMETRECP%
 GOTO SELECT
 
-:CPBDFINI
-TITLE Copie de "BD Fini" de Colva vers Anjuna
+:CPBD
+TITLE Copie du dossier "BD Fini" de Colva vers Anjuna
 CLS
-ECHO Copie de "BD Fini" de Colva vers Anjuna
+ECHO Copie du dossier "BD Fini" de Colva vers Anjuna
 robocopy "%COLVA%%FINI%\%FINIBD%" "%ANJUNA%%FINI%\%FINIBD%" %PARAMETRECP%
+GOTO SELECT
+
+:CPMANGA
+TITLE Copie du dossier "Manga Fini" de Colva vers Anjuna
+CLS
+ECHO Copie du dossier "Manga Fini" de Colva vers Anjuna
+robocopy "%COLVA%%FINI%\%FINIMANGA%" "%ANJUNA%%FINI%\%FINIMANGA%" %PARAMETRECP%
+GOTO SELECT
+
+:CPMANHUA
+TITLE Copie du dossier "Manhua Fini" de Colva vers Anjuna
+CLS
+ECHO Copie du dossier "Manhua Fini" de Colva vers Anjuna
+robocopy "%COLVA%%FINI%\%FINIMANHUA%" "%ANJUNA%%FINI%\%FINIMANHUA%" %PARAMETRECP%
+GOTO SELECT
+
+:CPMANWHA
+TITLE Copie du dossier "Manwha Fini" de Colva vers Anjuna
+CLS
+ECHO Copie du dossier "Manwha Fini" de Colva vers Anjuna
+robocopy "%COLVA%%FINI%\%FINIMANWHA%" "%ANJUNA%%FINI%\%FINIMANWHA%" %PARAMETRECP%
+GOTO SELECT
+
+:CPWEBT
+TITLE Copie du dossier "Webtoon Fini" de Colva vers Anjuna
+CLS
+ECHO Copie du dossier "Webtoon Fini" de Colva vers Anjuna
+robocopy "%COLVA%%FINI%\%FINIWEBTOON%" "%ANJUNA%%FINI%\%FINIWEBTOON%" %PARAMETRECP%
+GOTO SELECT
+
+:CPWEBTH
+TITLE Copie du dossier "Webtoon H Fini" de Colva vers Anjuna
+CLS
+ECHO Copie du dossier "Webtoon H Fini" de Colva vers Anjuna
+robocopy "%COLVA%%FINI%\%FINIWEBTOONH%" "%ANJUNA%%FINI%\%FINIWEBTOONH%" %PARAMETRECP%
 GOTO SELECT
 
 :CPTOUT
 :CPTELECHARGE
-TITLE Copie de "Telecharge" de Colva vers Anjuna
-CLS
-ECHO Copie de "Telecharge" de Colva vers Anjuna
+TITLE Copie du dossier "Telecharge" de Colva vers Anjuna
+IF %CHX% NEQ CPTOUT CLS
+ECHO Copie du dossier "Telecharge" de Colva vers Anjuna
 robocopy "%COLVA%%DL%" "%ANJUNA%%DL%" %PARAMETRECP%
-IF %CHX% EQU CPTELECHARGE GOTO SELECT
+IF %CHX% EQU CPTELECHARGE GOTO GENERAL
 
 :CPAPREPARER
-TITLE Copie de "A_Preparer" de Colva vers Anjuna
-CLS
-ECHO Copie de "A_Preparer" de Colva vers Anjuna
+TITLE Copie du dossier "A_Preparer" de Colva vers Anjuna
+IF %CHX% NEQ CPTOUT CLS
+ECHO Copie du dossier "A_Preparer" de Colva vers Anjuna
 robocopy "%COLVA%%APREP%" "%ANJUNA%%APREP%" %PARAMETRECP%
-IF %CHX% EQU CPAPREPARER GOTO SELECT
+IF %CHX% EQU CPAPREPARER GOTO GENERAL
 
-:CPBDTRIE
-TITLE Copie de "BD_Trie" de Colva vers Anjuna
-CLS
-ECHO Copie de "BD_Trie" de Colva vers Anjuna
-robocopy "%COLVA%%BDTRIE%" "%ANJUNA%%BDTRIE%" %PARAMETRECP%
-IF %CHX% EQU CPBDTRIE GOTO SELECT
+:CPBDTELECHARGE
+TITLE Copie du dossier "BD_Telecharge" de Colva vers Anjuna
+IF %CHX% NEQ CPTOUT CLS
+ECHO Copie du dossier "BD_Telecharge" de Colva vers Anjuna
+robocopy "%COLVA%%BDTELECHARGE%" "%ANJUNA%%BDTELECHARGE%" %PARAMETRECP%
+IF %CHX% EQU CPBDTELECHARGE GOTO GENERAL
+
+:CPBDVRAC
+TITLE Copie du dossier "BD_Vrac" de Colva vers Anjuna
+IF %CHX% NEQ CPTOUT CLS
+ECHO Copie du dossier "BD_Vrac" de Colva vers Anjuna
+robocopy "%COLVA%%BDVRAC%" "%ANJUNA%%BDVRAC%" %PARAMETRECP%
+IF %CHX% EQU CPBDVRAC GOTO GENERAL
 
 :CPSERIESFINI
-TITLE Copie de "Series_Finis" de Colva vers Anjuna
-CLS
-ECHO Copie de "Series_Finis" de Colva vers Anjuna
+TITLE Copie du dossier "Series_Finis" de Colva vers Anjuna
+IF %CHX% NEQ CPTOUT CLS
+ECHO Copie du dossier "Series_Finis" de Colva vers Anjuna
 robocopy "%COLVA%%FINI%" "%ANJUNA%%FINI%" %PARAMETRECP%
-GOTO SELECT
+GOTO GENERAL
 
 :ERREURDRIVE
 ECHO La lettre de lecteur a change, il est probable que ca va merder !
