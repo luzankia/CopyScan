@@ -63,7 +63,12 @@ REM --------------------------------------------------
 :EXCEPTION
 REM Verification du fichier exception.txt et creation au besoin
 CD %SOURCESCRIPT%
-IF NOT EXIST "exception.txt" (GOTO CREAEXCEPTION) ELSE (GOTO SOURCE)
+IF NOT EXIST "exception.txt" (GOTO CREAEXCEPTION) ELSE (GOTO BATCHEXCEPTION)
+
+:BATCHEXCEPTION
+REM Verification du fichier batchexception.txt et creation au besoin
+CD %SOURCESCRIPT%
+IF NOT EXIST "batchexception.txt" (GOTO CREABATCHEXCEPTION) ELSE (GOTO SOURCE)
 
 :SOURCE
 REM Verification du fichier source.txt et creation au besoin
@@ -388,6 +393,21 @@ CLS
 ECHO Fichier exception.txt cree et pre-remplis
 PAUSE
 GOTO SOURCE
+
+:CREABATCHEXCEPTION
+CD %SOURCESCRIPT%
+ECHO le fichier batchexception.txt n'existe pas !
+ECHO.
+PAUSE
+ECHO Folder Name;Added Element
+ECHO Lunar Scans (EN); (Lunar)
+ECHO Omega Scans (EN); (Omega)
+ECHO The Blank Scanlation (EN); (The Blank)
+ECHO Webtoons.com (FR); [FR];
+CLS
+ECHO Fichier batchexception.txt cree et pre-remplis
+PAUSE
+GOTO BATCHEXCEPTION
 
 :CREASOURCE
 REM ficher source.txt par defaut, pour recreation au cas où
