@@ -389,25 +389,26 @@ ECHO Dossier;nom original;nom original [FR];>exception.txt
 ECHO Hiperdex (EN);My High School Bully;My High School Bully (Hiperdex)>>exception.txt
 ECHO The Blank Scanlation (EN);My Lovely Illustrator;My Lovely Illustrator (Original)>>exception.txt
 ECHO The Blank Scanlation (EN);For Sale. Ruined Lady. Not Used;For Sale. Ruined Lady. Not Used (Original)>>exception.txt
+ECHO Manga District (EN);Resume;Resume (Official)>>exception.txt
 CLS
 ECHO Fichier exception.txt cree et pre-remplis
 PAUSE
-GOTO SOURCE
+GOTO BATCHEXCEPTION
 
 :CREABATCHEXCEPTION
 CD %SOURCESCRIPT%
 ECHO le fichier batchexception.txt n'existe pas !
 ECHO.
 PAUSE
-ECHO Folder Name;Added Element
-ECHO Lunar Scans (EN); (Lunar)
-ECHO Omega Scans (EN); (Omega)
-ECHO The Blank Scanlation (EN); (The Blank)
-ECHO Webtoons.com (FR); [FR];
+ECHO Folder Name;Added Element>batchexception.txt
+ECHO Lunar Scans (EN); (Lunar)>>batchexception.txt
+ECHO Omega Scans (EN); (Omega)>>batchexception.txt
+ECHO The Blank Scanlation (EN); (The Blank)>>batchexception.txt
+ECHO Webtoons.com (FR); [FR]>>batchexception.txt
 CLS
 ECHO Fichier batchexception.txt cree et pre-remplis
 PAUSE
-GOTO BATCHEXCEPTION
+GOTO SOURCE
 
 :CREASOURCE
 REM ficher source.txt par defaut, pour recreation au cas où
