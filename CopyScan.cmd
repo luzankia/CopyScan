@@ -417,41 +417,41 @@ ECHO le fichier source.txt n'existe pas !
 ECHO.
 PAUSE
 ECHO creation du fichier source.txt
-Nom du Dossier>source.txt
-Asura Scans (EN)>>source.txt
-Bato.to (ALL)>>source.txt
-ExHentai (ALL)>>source.txt
-FastManhwa (EN)>>source.txt
-Hentai Manga (EN)>>source.txt
-Hentai20 (EN)>>source.txt
-HentaiHere (EN)>>source.txt
-HentaiWebtoon (EN)>>source.txt
-Hentaidexy (EN)>>source.txt
-Hiperdex (EN)>>source.txt
-InstaManhwa (EN)>>source.txt
-Lunar Scans (EN)>>source.txt
-Manga18fx (EN)>>source.txt
-MangaBuddy (EN)>>source.txt
-MangaDex (EN)>>source.txt
-Mangahere (EN)>>source.txt
-Mangakakalot (EN)>>source.txt
-Manhua Plus (EN)>>source.txt
-Manhwa18 (EN)>>source.txt
-Manhwa18.app (EN)>>source.txt
-Manhwa18.cc (ALL)>>source.txt
-Manhwa18.cc (EN)>>source.txt
-Manhwa18.org (EN)>>source.txt
-Manhwa68 (EN)>>source.txt
-Manhwahentai.me (EN)>>source.txt
-ManyToon (EN)>>source.txt
-Omega Scans (EN)>>source.txt
-Oppai Stream (EN)>>source.txt
-Reaper Scans (EN)>>source.txt
-Temple Scan (EN)>>source.txt
-The Blank Scanlation (EN)>>source.txt
-Toonily (EN)>>source.txt
-Webtoons.com (EN)>>source.txt
-Webtoons.com (FR)>>source.txt
+ECHO Nom du Dossier>source.txt
+ECHO Asura Scans (EN)>>source.txt
+ECHO Bato.to (ALL)>>source.txt
+ECHO ExHentai (ALL)>>source.txt
+ECHO FastManhwa (EN)>>source.txt
+ECHO Hentai Manga (EN)>>source.txt
+ECHO Hentai20 (EN)>>source.txt
+ECHO HentaiHere (EN)>>source.txt
+ECHO HentaiWebtoon (EN)>>source.txt
+ECHO Hentaidexy (EN)>>source.txt
+ECHO Hiperdex (EN)>>source.txt
+ECHO InstaManhwa (EN)>>source.txt
+ECHO Lunar Scans (EN)>>source.txt
+ECHO Manga18fx (EN)>>source.txt
+ECHO MangaBuddy (EN)>>source.txt
+ECHO MangaDex (EN)>>source.txt
+ECHO Mangahere (EN)>>source.txt
+ECHO Mangakakalot (EN)>>source.txt
+ECHO Manhua Plus (EN)>>source.txt
+ECHO Manhwa18 (EN)>>source.txt
+ECHO Manhwa18.app (EN)>>source.txt
+ECHO Manhwa18.cc (ALL)>>source.txt
+ECHO Manhwa18.cc (EN)>>source.txt
+ECHO Manhwa18.org (EN)>>source.txt
+ECHO Manhwa68 (EN)>>source.txt
+ECHO Manhwahentai.me (EN)>>source.txt
+ECHO ManyToon (EN)>>source.txt
+ECHO Omega Scans (EN)>>source.txt
+ECHO Oppai Stream (EN)>>source.txt
+ECHO Reaper Scans (EN)>>source.txt
+ECHO Temple Scan (EN)>>source.txt
+ECHO The Blank Scanlation (EN)>>source.txt
+ECHO Toonily (EN)>>source.txt
+ECHO Webtoons.com (EN)>>source.txt
+ECHO Webtoons.com (FR)>>source.txt
 CLS
 ECHO Fichier source.txt cree et pre-remplis
 PAUSE
