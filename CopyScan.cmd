@@ -433,6 +433,7 @@ ECHO Lunar Scans (EN)>>source.txt
 ECHO Manga18fx (EN)>>source.txt
 ECHO MangaBuddy (EN)>>source.txt
 ECHO MangaDex (EN)>>source.txt
+ECHO Manga District (EN)>>source.txt
 ECHO Mangahere (EN)>>source.txt
 ECHO Mangakakalot (EN)>>source.txt
 ECHO Manhua Plus (EN)>>source.txt
