@@ -188,7 +188,7 @@ ECHO 3 - A Preparer
 ECHO 4 - BD Vrac
 ECHO 5 - BD Telecharge
 ECHO 6 - Series Fini
-ECHO 7    - Copie Series Fini Selective
+ECHO 7     - Copie Series Fini Selective
 ECHO.
 ECHO Q - Quitter
 ECHO.
@@ -388,8 +388,17 @@ ECHO creation du fichier exception.txt
 ECHO Dossier;nom original;nom original [FR];>exception.txt
 ECHO Hiperdex (EN);My High School Bully;My High School Bully (Hiperdex)>>exception.txt
 ECHO The Blank Scanlation (EN);My Lovely Illustrator;My Lovely Illustrator (Original)>>exception.txt
-ECHO The Blank Scanlation (EN);For Sale. Ruined Lady. Not Used;For Sale. Ruined Lady. Not Used (Original)>>exception.txt
+ECHO The Blank Scanlation (EN);Draw It Yourself!;Draw It Yourself! (Original)>>exception.txt
+ECHO Manga District (EN);Breaking A Romantic Fantasy Villain;Breaking A Romantic Fantasy Villain (Official)>>exception.txt
+ECHO Manga District (EN);His Addictive Touch;His Addictive Touch (Official)>>exception.txt
 ECHO Manga District (EN);Resume;Resume (Official)>>exception.txt
+ECHO Manga District (EN);Family With Benefits;Family With Benefits (Official)>>exception.txt
+ECHO Manga District (EN);Herbal Bathhouse Tales;Herbal Bathhouse Tales (Official)>>exception.txt
+ECHO Manga District (EN);Wreck My Bias;Wreck My Bias (Official)>>exception.txt
+ECHO Manga District (EN);Secret Class;Secret Class (Official)>>exception.txt
+ECHO Manga District (EN);Supervisor Access;Supervisor Access (Official)>>exception.txt
+ECHO Manga District (EN);Secret Class;Secret Class (Official)>>exception.txt
+ECHO Webtoons.com (EN);Surviving the Game as a Barbarian;Surviving the Game as a Barbarian (Official)>>exception.txt
 CLS
 ECHO Fichier exception.txt cree et pre-remplis
 PAUSE
