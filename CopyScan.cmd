@@ -1,4 +1,5 @@
 @ECHO OFF
+chcp 65001
 REM MODE DEVELOPEMENT 1=Oui 0=Non
 SET DEV=0
 
@@ -9,7 +10,7 @@ SET DRIVE=%CD:~0,3%
 REM Lettre de lecteur Colva
 SET COLVA=Z:\
 REM Lettre de lecteur Anjuna
-SET ANJUNA=U:\
+SET ANJUNA=D:\
 REM Dossier où se trouve le script
 SET SOURCESCRIPT=%CD%
 REM récuperation de la lettre de lecteur attendu depuis le fichier lecteur.txt
